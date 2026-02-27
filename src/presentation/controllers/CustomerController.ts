@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ICustomerRepository } from "../../domain/interfaces/ICustomerRepository";
-import { PrismaCustomerRepository } from "../infrastructure/repositories/PrismaCustomerRepository";
+import { PrismaCustomerRepository } from "../../infrastructure/repositories/PrismaCustomerReposistory";
 
 export class CustomerController {
   private repository: ICustomerRepository;
