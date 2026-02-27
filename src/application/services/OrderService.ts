@@ -2,6 +2,7 @@
 
 import { IOrderRepository } from "../../domain/interfaces/IOrderRepository";
 import { Order } from "../../domain/entities/Order";
+import { OrderItem } from "../../domain/entities/OrderItem";
 
 export class OrderService {
   private orderRepository: IOrderRepository;
@@ -47,5 +48,25 @@ export class OrderService {
   async getAllOrders(): Promise<Order[]> {
     const orders = await this.orderRepository.findAll();
     return orders;
+  }
+
+  async addItemToOrder(orderId: string, itemData: any): Promise<OrderItem> {
+    return this.orderRepository.addItemToOrder(orderId, itemData);
+  }
+
+  async updateOrderItem(
+    orderItemId: string,
+    itemData: any
+  ): Promise<OrderItem | null> {
+    const existingOrderItem = await this.orderRepository.updateOrderItem(
+      orderItemId,
+      itemData
+    );
+
+    return existingOrderItem;
+  }
+
+  async removeItemFromOrder(orderItemId: string): Promise<boolean> {
+    return this.orderRepository.removeItemFromOrder(orderItemId);
   }
 }
